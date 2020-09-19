@@ -5,3 +5,7 @@
     margin: 20px auto 8px auto;
     padding-bottom: 8px;
 }
+
+:global .borderColor {
+    border-color: greenyellow
+}
