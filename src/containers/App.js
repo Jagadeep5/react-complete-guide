@@ -8,6 +8,8 @@ import Tailbuttons from '../components/tailbuttons/tailbuttons';
 import Auxi from '../components/hoc/Auxi';
 import WithClassAuxi from '../components/hoc/WithClassAuxi';
 import LoginContext from '../context/loginContext';
+import axios from 'axios';
+import ServerData from '../components/ServerData/ServerData';
 
 // a component should always return JSX. 
 class App extends Component {
@@ -22,6 +24,18 @@ class App extends Component {
   }
   componentDidMount() {
     console.log("5. componentDidMount got called");
+    this.getUserDetails();
+  }
+
+  getUserDetails = () => {
+    axios.get("getuserdetails")
+    .then((x) => {
+      console.log(x);
+      this.setState({
+        ...this.state,
+        userDetails: x.data
+      })
+    })
   }
 
   // useState always returns an arry with 2 elements. 1 is state and 2 is change state fiunction. 
@@ -43,6 +57,7 @@ class App extends Component {
         width: '400px'
       }
     },
+    userDetails:[],
     showData: false,
     changeSubColor: false,
     authenticated: false
@@ -112,6 +127,8 @@ class App extends Component {
     );
   }
 
+  
+
   render() {
     console.log("3. render got called");
     return (
@@ -128,6 +145,7 @@ class App extends Component {
           </LoginContext.Provider>
           <Tailbuttons changeUsingBind={this.changeState.bind(this, ["Deepu", "Dhoni"])}
             changeData={(data) => this.changeState(data)} />
+            <ServerData userDetails={this.state.userDetails} userDetailsChanged={this.getUserDetails}></ServerData>
         </WithClassAuxi>
       </StyleRoot>
     );

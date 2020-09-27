@@ -6,9 +6,10 @@ const Cockpit = (props) => {
     console.log("4. [Cockpit]child component Render got called");
     useEffect(() => {
         console.log("[Cockpit] componentDIDMounted");
-    },[]);
+    },[]); // if second param is not there then it will trigger on mount and update, if it is empty then it will trigger on mount only
+    
 
-    const loginCntxt = useContext(LoginContext);
+    const loginCntxt = useContext(LoginContext); //Tjhis is in functional component
     
     return(
     <div>
@@ -28,7 +29,7 @@ const Cockpit = (props) => {
                     }
                 }
             </LoginContext.Consumer> */}
-            <button className={ classes.buttonStyles } style={{backgroundColor: LoginContext.authentication ? 'salmon' : 'lightgreen', color: 'black' }} onClick={loginCntxt.login}>{loginCntxt.authentication?"Log Out": "Log In"}</button>
+            <button className={ classes.buttonStyles } style={{backgroundColor: loginCntxt.authentication ? 'salmon' : 'lightgreen', color: 'black' }} onClick={loginCntxt.login}>{loginCntxt.authentication?"Log Out": "Log In"}</button>
             
         </div>
     </div>

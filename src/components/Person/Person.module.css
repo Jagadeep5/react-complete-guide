@@ -1,4 +1,4 @@
-.person {
+.person { /*This will be converted into hash value*/
     border: 1px solid;
     box-shadow: 2px 5px grey;
     width: 90%;

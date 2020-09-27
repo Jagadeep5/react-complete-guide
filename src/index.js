@@ -3,8 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
+import axios from 'axios';
 
+axios.defaults.headers.common["Auth"] = "Abc";
+axios.interceptors.request.use((req) => {
+  if(req.url.indexOf("localhost") === -1){
+    req.baseURL = "http://localhost/ApiDataApp/values/";
+  }
+  return req;
+})
 ReactDOM.render(
+  
   <React.StrictMode>
     <App />
   </React.StrictMode>,

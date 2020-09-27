@@ -9,7 +9,7 @@ class person extends Component {
         this.inputRef = React.createRef();
     }
 
-    static contextType = LoginContext;
+    static contextType = LoginContext; // this can only be used in class based components.This will populate the react object "context" with Login context properties
 
     styles = { float: 'right', width: '20px', cursor: "pointer", border: '1px solid' };
     classList = [classes.person, 'borderColor'].join(' ');
